@@ -1,0 +1,54 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+	Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap-grid.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Umbraco</title>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="popover-header bg-dark">
+        <br />
+        <br />
+        <div class="row">
+            <div class="col-md-10">
+                <h1 class="nav-link"><a href="#">AarhusWebDevCoop</a></h1>
+            </div>
+            <div class="col-md-1 text-light float-md-right">Welcome @Members.GetCurrentLoginStatus().Name</div>
+        </div>
+        <br />
+        <br />
+    </header>
+
+    <div>@Umbraco.RenderMacro("mainMenu")</div>
+
+
+    <div class="thead-light"><br /> <br /></div>
+    <div class="container-fluid text-center text-md-left">
+            <div>@RenderBody()</div>
+            <div class="col-lg-6">@Umbraco.Field("keywords")</div>
+        </div>
+
+    <br /> <br />
+
+    <!-- Footer -->
+    <footer class="card-footer align-bottom bg-dark">
+        <br />
+        <div class="col-lg-7 text-light"><p>@Umbraco.Field("footerText")</p></div>
+    </footer>
+
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.bundle.min.js"></script>
+
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+@{
+	var selection = Model.Content.Site().FirstChild("projectsOverview").Children("projectItem")
+						.Where(x => x.IsVisible())
+						.OrderBy("CreateDate desc")
+						.Take(3);
+}
+
+<ul>
+	@foreach(var item in selection){
+    <li class="card bg-dark">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a href="@item.Url">@item.Name</a> </h5>
+        </div>
+    </li>
+
+    <li class="card font-italic font-weight-light" style="color: darkslategray; font-size: 20px; padding: 5px;">
+        <p>@Umbraco.Truncate(@item.GetPropertyValue("projectDescription").ToString(), 200)</p>
+        <a href="@item.Url" class="page-link">Read More..</a>
+    </li>
+    <br />
+	}
+</ul>
+

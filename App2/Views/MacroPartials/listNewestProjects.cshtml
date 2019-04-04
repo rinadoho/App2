@@ -1,0 +1,28 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+@{ var root = Model.Content.Site();}
+@{
+    IEnumerable<IPublishedContent> items = Umbraco.TypedContentAtRoot()
+    .First()
+    .Children()
+    .Where(x => x.DocumentTypeAlias == "projectsOverview")
+    .First()
+    .Children()
+    .Where(x => x.HasValue("projectStatus") &&
+        Umbraco.GetPreValueAsString(
+        x.GetPropertyValue<int>("projectStatus")) == "Completed")
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate)
+    .ToArray()
+    .Take(5);
+
+}
+
+   Latest Projects
+<ul class="list-group">
+    @foreach (var item in items)
+    {
+        <li class="list-group-item"><a href="@item.Url">@item.Name</a></li>
+    }
+</ul>

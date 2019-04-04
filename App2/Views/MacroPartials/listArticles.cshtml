@@ -1,0 +1,29 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@using Umbraco.Web
+
+@{ var root = Model.Content.Site();}
+@{
+    IEnumerable<IPublishedContent> itemArts = Umbraco.TypedContentAtRoot()
+    .First()
+    .Children()
+    .Where(x => x.DocumentTypeAlias == "articlesOverview")
+    .First()
+    .Children()
+    .Where(x => x.IsVisible())
+    .OrderByDescending(x => x.CreateDate)
+    .ToArray()
+    .Take(5);
+
+
+}
+
+Latest Articles
+<ul class="list-group">
+    @foreach (var item in itemArts)
+    {
+        <li class="list-group-item"><a href="@item.Url">@item.Name</a></li>
+    }
+</ul>
+
+<br />
+<br />

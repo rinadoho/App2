@@ -1,0 +1,11 @@
+
+git: https://github.com/rinadoho/App2
+
+admin: rinadoho@gmail.com
+password: 1234567890
+
+active member: hollief
+password: 1234567890
+
+guest member: Guest1
+password: 1234567890
